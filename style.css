@@ -39,7 +39,7 @@ body {
     display: flex;
     font-weight: bold;
     color: white;
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     /* line-height: 1.4; */
     text-align: center;
 }
@@ -50,7 +50,7 @@ body {
 
 .header-text.left {
     justify-content: flex-end;
-    font-size: 0.5rem;
+    font-size: 0.4rem;
     word-wrap: break-word;
     word-break: keep-all;
     white-space: nowrap;
@@ -76,7 +76,7 @@ body {
     }
 
     .header-text {
-        font-size: 0.5rem;
+        font-size: 0.9rem;
         line-height: 1.3;
     }
 
@@ -115,6 +115,10 @@ body {
     .secondary-logo {
         height: 80px;
         transition: var(--transition);
+    }
+
+    .header-text.left {
+        font-size: 0.8rem;
     }
 
 }
@@ -382,4 +386,37 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+
+
+.attachments-cell {
+    vertical-align: top;
+    padding: 8px;
+}
+
+.attachment-item {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.attachment-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.attachment-link {
+    color: #0066cc;
+    text-decoration: none;
+    padding: 4px 8px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+    margin-top: 2px;
+}
+
+.attachment-link:hover {
+    text-decoration: none;
+    background-color: #e0e0e0;
 }

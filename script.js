@@ -6,11 +6,15 @@ const valuesData = {
         education: "المشاركة في المناسبات الوطنية، تعزيز المواطنة الإيجابية",
         progress: "مستوى المشاركة في الأنشطة الوطنية",
         activities: {
-            theater: "مسرحية عن تاريخ المملكة العربيه السعوديه",
+            theater: "مسرحية عن تاريخ المملكة",
             broadcast: "برنامج إذاعي عن إنجازات الوطن",
             video: "فيديو وثائقي عن رؤية 2030",
             drawing: "معرض فني للمعالم الوطنية"
-        }
+        },
+        attachments: [
+            { title: "دليل الأنشطة الوطنية", link: "https://drive.google.com/file/d/1yXjeQ_dg5VQYE6GbRP31C55yGEhB7eQU/view?usp=sharing" },
+            { title: "نماذج المشاريع الوطنية", link: "https://drive.google.com/file/d/1BdnV1ZtWtYYvkmj2hJ6CJWAjfrdEyjUU/view?usp=sharing" }
+        ]
     },
     "التسامح": {
         title: "تعزيز قيمة التسامح",
@@ -23,7 +27,11 @@ const valuesData = {
             broadcast: "حوار إذاعي عن التسامح",
             video: "قصص نجاح عن التسامح",
             drawing: "لوحات فنية عن السلام"
-        }
+        },
+        attachments: [
+            { title: "دليل التسامح", link: "docs/tolerance-guide.pdf" },
+            { title: "أنشطة التعايش", link: "docs/coexistence-activities.pdf" }
+        ]
     },
     "الوسطية": {
         title: "تعزيز الوسطية والاعتدال",
@@ -36,7 +44,10 @@ const valuesData = {
             broadcast: "برنامج عن الوسطية",
             video: "فيديو توعوي",
             drawing: "رسومات تعبيرية"
-        }
+        },
+        attachments: [
+            { title: "دليل الوسطية", link: "docs/moderation-guide.pdf" }
+        ]
     },
     "المثابرة": {
         title: "تنمية المثابرة",
@@ -49,7 +60,11 @@ const valuesData = {
             broadcast: "قصص ملهمة",
             video: "تجارب ناجحة",
             drawing: "لوحات تحفيزية"
-        }
+        },
+        attachments: [
+            { title: "دليل المثابرة", link: "docs/perseverance-guide.pdf" },
+            { title: "قصص نجاح", link: "docs/success-stories.pdf" }
+        ]
     },
     "الاتقان": {
         title: "تعزيز الاتقان",
@@ -62,7 +77,10 @@ const valuesData = {
             broadcast: "برامج توعوية",
             video: "نماذج متميزة",
             drawing: "معرض فني"
-        }
+        },
+        attachments: [
+            { title: "دليل الإتقان", link: "docs/perfection-guide.pdf" }
+        ]
     },
     "الانضباط": {
         title: "تعزيز الانضباط",
@@ -75,7 +93,11 @@ const valuesData = {
             broadcast: "برنامج إرشادي",
             video: "فيديو تعليمي",
             drawing: "رسومات إرشادية"
-        }
+        },
+        attachments: [
+            { title: "دليل الانضباط", link: "docs/discipline-guide.pdf" },
+            { title: "نماذج السلوك", link: "docs/behavior-models.pdf" }
+        ]
     },
     "المرونة": {
         title: "تنمية المرونة",
@@ -88,7 +110,10 @@ const valuesData = {
             broadcast: "حوارات مفتوحة",
             video: "تجارب ناجحة",
             drawing: "تعبير فني حر"
-        }
+        },
+        attachments: [
+            { title: "دليل المرونة", link: "docs/flexibility-guide.pdf" }
+        ]
     },
     "الإيجابية": {
         title: "تعزيز الإيجابية",
@@ -101,7 +126,11 @@ const valuesData = {
             broadcast: "برامج تحفيزية",
             video: "قصص نجاح",
             drawing: "فن إيجابي"
-        }
+        },
+        attachments: [
+            { title: "دليل التفكير الإيجابي", link: "docs/positive-thinking.pdf" },
+            { title: "أنشطة تحفيزية", link: "docs/motivational-activities.pdf" }
+        ]
     },
     "العزيمة": {
         title: "تنمية العزيمة",
@@ -114,29 +143,13 @@ const valuesData = {
             broadcast: "قصص ملهمة",
             video: "تجارب ناجحة",
             drawing: "لوحات تعبيرية"
-        }
+        },
+        attachments: [
+            { title: "دليل تنمية العزيمة", link: "docs/determination-guide.pdf" },
+            { title: "تمارين تعزيز الإرادة", link: "docs/willpower-exercises.pdf" }
+        ]
     }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const gridItems = document.querySelectorAll('.grid-item');
 const modal = document.getElementById('disciplineModal');
@@ -150,18 +163,26 @@ function populateTable(value) {
     tableTitle.textContent = data.title;
 
     const tbody = document.querySelector('.discipline-table tbody');
+    const attachmentsHtml = data.attachments ? data.attachments.map(att =>
+        `<div class="attachment-item">
+            <span >${att.title}</span>
+            <a href="${att.link}" target="_blank" class="attachment-link">رابط</a>
+        </div>`
+    ).join('') : '';
+
     tbody.innerHTML = `
-                <tr>
-                    <td>${data.description}</td>
-                    <td>${data.traits}</td>
-                    <td>${data.education}</td>
-                    <td>${data.progress}</td>
-                    <td>${data.activities.theater}</td>
-                    <td>${data.activities.broadcast}</td>
-                    <td>${data.activities.video}</td>
-                    <td>${data.activities.drawing}</td>
-                </tr>
-            `;
+        <tr>
+            <td>${data.description}</td>
+            <td>${data.traits}</td>
+            <td>${data.education}</td>
+            <td>${data.progress}</td>
+            <td>${data.activities.theater}</td>
+            <td>${data.activities.broadcast}</td>
+            <td>${data.activities.video}</td>
+            <td>${data.activities.drawing}</td>
+            <td>${attachmentsHtml}</td>
+        </tr>
+    `;
 }
 
 gridItems.forEach(item => {
